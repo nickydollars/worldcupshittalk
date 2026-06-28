@@ -336,41 +336,41 @@
     </div>
 
     <script>
-        function joinTheTerrace() {
-            // 1. Verify reCAPTCHA Challenge First
-            var captchaResponse = grecaptcha.getResponse();
-            if (captchaResponse.length == 0) {
-                alert("Prove you aren't an automated bot before entering the terrace.");
-                return;
-            }
-
-            var name = document.getElementById('username').value.trim();
-            var home = document.getElementById('homeCountry').value;
-            var winner = document.getElementById('winnerCountry').value;
-
-            if (!name) {
-                alert("You need a username to shout on the terrace.");
-                return;
-            }
-
-            // Clean flag text to extract just the flag emoji parts
-            var homeFlag = home.split(' ')[0];
-            var winnerFlag = winner.split(' ')[0];
-
-            // Formats user identity to: Name 🇺🇸🔮🇧🇷
-            var formattedIdentity = name + " " + homeFlag + "🔮" + winnerFlag;
-
-            // Hide the modal, show the chat frame
-            document.getElementById('modal-overlay').style.display = 'none';
-            document.getElementById('chat-wrapper').style.display = 'block';
-
-            // Programmatically logs user into the RumbleTalk embed via JavaScript SDK
-            rtmq('login', {
-                hash: 'yNJN4s6X',
-                username: formattedIdentity
-            });
+    function joinTheTerrace() {
+        // 1. Verify reCAPTCHA Challenge First
+        var captchaResponse = grecaptcha.getResponse();
+        if (captchaResponse.length == 0) {
+            alert("Prove you aren't an automated bot before entering the terrace.");
+            return;
         }
-    </script>
+
+        var name = document.getElementById('username').value.trim();
+        var home = document.getElementById('homeCountry').value;
+        var winner = document.getElementById('winnerCountry').value;
+
+        if (!name) {
+            alert("You need a username to shout on the terrace.");
+            return;
+        }
+
+        // Clean flag text to extract just the flag emoji parts
+        var homeFlag = home.split(' ')[0];
+        var winnerFlag = winner.split(' ')[0];
+
+        // Formats user identity to: Name 🇺🇸🔮🇧🇷
+        var formattedIdentity = name + " " + homeFlag + "🔮" + winnerFlag;
+
+        // FIXED: Removed the '#' from the ID string so the modal actually hides
+        document.getElementById('modal-overlay').style.display = 'none';
+        document.getElementById('chat-wrapper').style.display = 'block';
+
+        // Programmatically logs user into the RumbleTalk embed via JavaScript SDK
+        rtmq('login', {
+            hash: 'yNJN4s6X',
+            username: formattedIdentity
+        });
+    }
+</script>
 
 </body>
 </html>
