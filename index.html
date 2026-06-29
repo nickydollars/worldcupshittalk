@@ -316,7 +316,7 @@
                 <div class="g-recaptcha" data-sitekey="6Lfk4DotAAAAAJkTC-DqLjKL7JJd4NJaNAyJhRtl" data-theme="dark"></div>
             </div>
 
-            <button class="btn-submit" onclick="joinTheTerrace()">Enter the Terrace</button>
+            <button class="btn-submit" onclick="joinTheTerrace()">Enter WORLD CUP SHIT TALK</button>
         </div>
     </div>
 
@@ -326,7 +326,7 @@
         <script async src="https://tlk.io/embed.js" type="text/javascript"></script>
     </div>
 
-    <script>
+ <script>
         function joinTheTerrace() {
             // 1. Verify reCAPTCHA Challenge First
             var captchaResponse = grecaptcha.getResponse();
@@ -351,20 +351,24 @@
             // Combines flags to make a stunning custom username right inside the feed
             var formattedIdentity = name + " " + homeFlag + "🔮" + winnerFlag;
 
-            // Seed BOTH potential storage variables to force skip the tlk lock box
+            // Save user details to browser cache so tlk.io reads it instantly
             localStorage.setItem('tlkio_nickname', formattedIdentity);
-            localStorage.setItem('tlkio_username', formattedIdentity);
 
-            // Hide the gateway modal completely, revealing the fully prepared chat frame wrapper
+            // Hide the modal barrier instantly without reloading the page!
             document.getElementById('modal-overlay').style.display = 'none';
             document.getElementById('chat-wrapper').style.display = 'block';
 
-            // Forces tlk.io to instantly rebuild its interface using the fresh storage identity data
-            if (window.Tlkio && typeof window.Tlkio.init === 'function') {
-                window.Tlkio.init();
-            } else {
-                // Quick page fallback to seamlessly apply the cache changes if the engine initialized early
-                window.location.reload();
-            }
+            // Dynamically build an iframe window pointing to the chat room
+            // This bypasses their broken script and drops you into the chat instantly as a guest!
+            var iframe = document.createElement('iframe');
+            iframe.src = "https://tlk.io/worldcupshittalk";
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            
+            // Inject the completed frame directly into the open wrapper view
+            var chatContainer = document.getElementById('chat-wrapper');
+            chatContainer.innerHTML = ''; // Clears old data fields out
+            chatContainer.appendChild(iframe);
         }
     </script>
