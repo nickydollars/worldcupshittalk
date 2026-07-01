@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Fixed: Added interactive-widget to force mobile keyboards to resize properly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
     <title>World Cup Shit Talk</title>
     <style>
         html, body {
-            margin: 0; padding: 0; width: 100%; 
+            margin: 0; padding: 0; width: 100%;
             height: 100vh;
             height: 100svh; /* Smart responsive mobile height */
             overflow: hidden; background-color: #111; font-family: sans-serif;
             display: flex;
             flex-direction: column;
         }
-        
+
         /* Logo Container at the top */
         #logo-container {
             width: 100%;
@@ -36,18 +35,16 @@
         }
 
         /* Chat container scales to fill the rest of the screen */
-        #chat-wrapper { 
-            width: 100%; 
-            flex-grow: 1; 
+        #chat-wrapper {
+            width: 100%;
+            flex-grow: 1;
             height: 0;
         }
-        
-        /* Fixed: Replaced script wrapper with a highly stable mobile iframe */
-        #chat-frame {
+
+        /* tlk.io injects its chat into this div; force it to fill the wrapper */
+        #tlkio {
             width: 100%;
             height: 100%;
-            border: none;
-            background-color: #111;
         }
     </style>
 </head>
@@ -58,9 +55,10 @@
         <img src="worldcupshittalk.png" alt="World Cup Shit Talk Logo">
     </div>
 
-    <!-- THE STABLE IFRAME CHAT ROOM -->
+    <!-- OFFICIAL tlk.io EMBED (Night theme) -->
     <div id="chat-wrapper">
-        <iframe id="chat-frame" src="https://tlk.io/worldcupshittalk?theme=night&embed=1&custom_css=data:text/css,body%20%23io_input%20%7B%20color%3A%20%23ffffff%20%21important%3B%20background-color%3A%20%23222222%20%21important%3B%20%7D" allow="clipboard-write"></iframe>
+        <div id="tlkio" data-channel="worldcupshittalk" data-theme="theme--night"></div>
+        <script async src="https://tlk.io/embed.js"></script>
     </div>
 
 </body>
