@@ -8,13 +8,12 @@
         html, body {
             margin: 0; padding: 0; width: 100%;
             height: 100vh;
-            height: 100svh; /* Smart responsive mobile height */
+            height: 100dvh; /* dvh handles the mobile keyboard better than svh */
             overflow: hidden; background-color: #111; font-family: sans-serif;
             display: flex;
             flex-direction: column;
         }
 
-        /* Logo Container at the top */
         #logo-container {
             width: 100%;
             background-color: #111;
@@ -26,39 +25,67 @@
             box-sizing: border-box;
         }
 
-        /* Responsive Logo Image */
         #logo-container img {
-            max-height: 240px; /* Big layout */
+            max-height: 240px;
             width: auto;
             max-width: 95%;
             object-fit: contain;
         }
 
-        /* Chat container scales to fill the rest of the screen */
         #chat-wrapper {
             width: 100%;
             flex-grow: 1;
             height: 0;
         }
 
-        /* tlk.io injects its chat into this div; force it to fill the wrapper */
         #tlkio {
             width: 100%;
             height: 100%;
+        }
+
+        /* Mobile "enter chat" button — hidden on desktop */
+        #mobile-chat-link { display: none; }
+
+        /* Phones block the embedded chat's cookies, so it can't post.
+           Send phone users straight to the tlk.io room instead. */
+        @media (max-width: 768px) {
+            #logo-container img { max-height: 140px; }
+            #tlkio { display: none; }
+            #mobile-chat-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+            }
+            #mobile-chat-link span {
+                background-color: #ffd500;
+                color: #111;
+                font-size: 1.4rem;
+                font-weight: bold;
+                padding: 18px 32px;
+                border-radius: 12px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- LOGO BANNER -->
     <div id="logo-container">
         <img src="worldcupshittalk.png" alt="World Cup Shit Talk Logo">
     </div>
 
-    <!-- OFFICIAL tlk.io EMBED (Night theme) -->
     <div id="chat-wrapper">
+        <!-- Desktop: embedded chat -->
         <div id="tlkio" data-channel="worldcupshittalk" data-theme="theme--night"></div>
         <script async src="https://tlk.io/embed.js"></script>
+
+        <!-- Mobile: open the real room (posting works first-party) -->
+        <a id="mobile-chat-link" href="https://tlk.io/worldcupshittalk">
+            <span>Enter the Chat →</span>
+        </a>
     </div>
 
 </body>
