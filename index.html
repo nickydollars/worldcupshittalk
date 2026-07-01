@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Fixed: Added interactive-widget to force mobile keyboards to resize properly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
     <title>World Cup Shit Talk</title>
     <style>
         html, body {
             margin: 0; padding: 0; width: 100%; 
-            height: 100vh; /* Fallback for older browsers */
-            height: 100svh; /* Smartly resizes when the mobile keyboard pops up */
+            height: 100vh;
+            height: 100svh; /* Smart responsive mobile height */
             overflow: hidden; background-color: #111; font-family: sans-serif;
             display: flex;
             flex-direction: column;
@@ -28,9 +29,9 @@
 
         /* Responsive Logo Image */
         #logo-container img {
-            width: 100%;
-            max-width: 600px; /* Limits ultimate size on massive desktop screens */
-            height: auto;
+            max-height: 240px; /* Big layout */
+            width: auto;
+            max-width: 95%;
             object-fit: contain;
         }
 
@@ -40,18 +41,26 @@
             flex-grow: 1; 
             height: 0;
         }
-        #tlkio { width: 100% !important; height: 100% !important; border: none; }
+        
+        /* Fixed: Replaced script wrapper with a highly stable mobile iframe */
+        #chat-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #111;
+        }
     </style>
 </head>
 <body>
 
+    <!-- LOGO BANNER -->
     <div id="logo-container">
         <img src="worldcupshittalk.png" alt="World Cup Shit Talk Logo">
     </div>
 
+    <!-- THE STABLE IFRAME CHAT ROOM -->
     <div id="chat-wrapper">
-        <div id="tlkio" data-channel="worldcupshittalk" data-theme="theme--night" style="width:100%; height:100%;"></div>
-        <script async src="https://tlk.io/embed.js" type="text/javascript"></script>
+        <iframe id="chat-frame" src="https://tlk.io/worldcupshittalk?theme=night" allow="clipboard-write"></iframe>
     </div>
 
 </body>
